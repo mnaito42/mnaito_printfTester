@@ -62,11 +62,11 @@ show:
 	@cat result.txt
 
 valgrind: all
-	ifdef VALGRIND
-		@$(VALGRIND) ./$(NAME)
-	else
-		@echo "Valgrind is Linux only"
-	endif
+ifdef VALGRIND
+	@$(VALGRIND) ./$(NAME)
+else
+	@echo "Valgrind is Linux only"
+endif
 
 re: fclean all
 
