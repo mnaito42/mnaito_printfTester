@@ -6,7 +6,7 @@
 /*   By: mnaito <mnaito@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:57:36 by mnaito            #+#    #+#             */
-/*   Updated: 2026/05/07 18:29:54 by mnaito           ###   ########.fr       */
+/*   Updated: 2026/05/13 15:32:15 by mnaito           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,15 @@ void	string_test_sub(char *s)
 	RUN_TEST("str/left", "%-3s", s);
 	RUN_TEST("str/width-zero", "%0s", s);
 	RUN_TEST("str/left, width-zero", "%-0s", s);
-	RUN_TEST("str/precision", "%.5s", s);
-	RUN_TEST("str/precision", "%.3s", s);
+	
 	RUN_TEST("str/zero-precision", "%.0s", s);
+	RUN_TEST("str/zero-precision", "%.s", s);
+	RUN_TEST("str/precision", "%.3s", s);
+	RUN_TEST("str/precision", "%.4s", s);
+	RUN_TEST("str/precision", "%.5s", s);
+	RUN_TEST("str/precision", "%.6s", s);
+	RUN_TEST("str/precision", "%.7s", s);
+	
 	RUN_TEST("str/width+precision", "%10.5s", s);
 	RUN_TEST("str/left+precision", "%-10.5s", s);
 	RUN_TEST("str/width+precision", "%10.3s", s);
@@ -136,8 +142,9 @@ void	string_test_sub(char *s)
 void	string_test()
 {
 	string_test_sub("Hello, world!");
+	string_test_sub("hoge");
 	string_test_sub("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
-	string_test_sub("Hi");
+	string_test_sub("A");
 	string_test_sub("");
 	string_test_sub(NULL);
 }
@@ -150,7 +157,17 @@ void	int_test_sub(int n)
 	RUN_TEST("int/width", "%10d", n);
 	RUN_TEST("int/left", "%-10d", n);
 
+	RUN_TEST("int/zero-precision", "%.0d", n);
+	RUN_TEST("int/zero-precision", "%.d", n);
+	RUN_TEST("int/zero-precision", "%1.0d", n);
+	RUN_TEST("int/zero-precision", "%3.0d", n);
+	RUN_TEST("int/zero-precision", "%5.0d", n);
+	RUN_TEST("int/zero-precision", "%10.0d", n);
+	
+	RUN_TEST("int/precision", "%.3d", n);
 	RUN_TEST("int/precision", "%.5d", n);
+	RUN_TEST("int/precision", "%.10d", n);
+	
 	RUN_TEST("int/width+precision", "%10.5d", n);
 	RUN_TEST("int/left+precision", "%-10.5d", n);
 
@@ -193,7 +210,13 @@ void hex_test_sub(unsigned int n)
 	RUN_TEST("hex/width", "%10x", n);
 	RUN_TEST("hex/left", "%-10x", n);
 
-	RUN_TEST("hex/precision", "%.5x", n);
+	RUN_TEST("hex/zero-precision", "%.0x", n);
+	RUN_TEST("hex/zero-precision", "%.X", n);
+	RUN_TEST("hex/precision", "%.1X", n);
+	RUN_TEST("hex/precision", "%.3x", n);
+	RUN_TEST("hex/precision", "%.5X", n);
+	RUN_TEST("hex/precision", "%.10x", n);
+	
 	RUN_TEST("hex/width+precision", "%10.5x", n);
 	RUN_TEST("hex/left+precision", "%-10.5x", n);
 
@@ -240,10 +263,20 @@ void	uint_test_sub(unsigned int n)
 	RUN_TEST("uint/width", "%10u", n);
 	RUN_TEST("uint/left", "%-10u", n);
 
+	RUN_TEST("uint/zero-precision", "%.0u", n);
+	RUN_TEST("uint/zero-precision", "%.u", n);
+	RUN_TEST("uint/precision", "%.3u", n);
 	RUN_TEST("uint/precision", "%.5u", n);
+	RUN_TEST("uint/precision", "%.10u", n);
+	
 	RUN_TEST("uint/width+precision", "%10.5u", n);
+	RUN_TEST("uint/zeor+width+precision", "%010.5u", n);
 	RUN_TEST("uint/left+precision", "%-10.5u", n);
 
+	RUN_TEST("uint/width+precision", "%13.7u", n);
+	RUN_TEST("uint/zeor+width+precision", "%013.7u", n);
+	RUN_TEST("uint/left+precision", "%-13.7u", n);
+	
 	RUN_TEST("uint/zero", "%010u", n);
 	RUN_TEST("uint/zero+precision", "%010.5u", n);
 
@@ -255,8 +288,10 @@ void	uint_test_sub(unsigned int n)
 	RUN_TEST("uint/all-flags", "%0-+# 3.5u", n);
 	RUN_TEST("uint/all-flags", "%0-+# 1.10u", n);
 
-	RUN_TEST("uint/zero-value", "%.0u", n);
 	RUN_TEST("uint/zero-value-width", "%5.0u", n);
+	RUN_TEST("uint/zero-value-width", "%7.0u", n);
+	RUN_TEST("uint/zero-value-width", "%05.0u", n);
+	RUN_TEST("uint/zero-value-width", "%07.0u", n);
 }
 
 void	uint_test()
