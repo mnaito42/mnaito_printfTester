@@ -6,7 +6,7 @@
 /*   By: mnaito <mnaito@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:57:36 by mnaito            #+#    #+#             */
-/*   Updated: 2026/05/13 15:32:15 by mnaito           ###   ########.fr       */
+/*   Updated: 2026/05/13 15:41:46 by mnaito           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,8 +183,13 @@ void	int_test_sub(int n)
 	RUN_TEST("int/all-flags", "%0-+3.5d", n);
 	RUN_TEST("int/all-flags", "%0-+1.10d", n);
 
-	RUN_TEST("int/zero-value", "%.0d", n);
+	RUN_TEST("int/zero-value-plus", "%+.0d", n);
+	RUN_TEST("int/zero-value-space", "% .0d", n);
 	RUN_TEST("int/zero-value-width", "%5.0d", n);
+	RUN_TEST("int/zero-value-width-plus", "%+5.0d", n);
+	RUN_TEST("int/zero-value-width-space", "% 5.0d", n);
+	RUN_TEST("int/zero-value-width-plus-dash", "%+-5.0d", n);
+	RUN_TEST("int/zero-value-width-space-dash", "% -5.0d", n);
 
 	RUN_TEST("int/negative-width", "%10d", n);
 	RUN_TEST("int/negative-zero", "%010d", n);
@@ -246,6 +251,14 @@ void hex_test_sub(unsigned int n)
 	RUN_TEST("hex/all-flags", "%0-+# 10.5X", n);
 	RUN_TEST("hex/all-flags", "%0-+# 3.5X", n);
 	RUN_TEST("hex/all-flags", "%0-+# 1.10X", n);
+
+	RUN_TEST("int/zero-value-plus", "%#.0x", n);
+	RUN_TEST("int/zero-value-space", "% .0X", n);
+	RUN_TEST("int/zero-value-width", "%5.0x", n);
+	RUN_TEST("int/zero-value-width-plus", "%#5.0X", n);
+	RUN_TEST("int/zero-value-width-space", "% 5.0x", n);
+	RUN_TEST("int/zero-value-width-plus-dash", "%#-5.0X", n);
+	RUN_TEST("int/zero-value-width-space-dash", "% -5.0x", n);
 }
 
 void	hex_test()
